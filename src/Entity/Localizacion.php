@@ -44,9 +44,15 @@ class Localizacion
      */
     private $hijos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Material::class, mappedBy="localizacion")
+     */
+    private $materiales;
+
     public function __construct()
     {
         $this->hijos = new ArrayCollection();
+        $this->materiales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,6 +132,36 @@ class Localizacion
             // set the owning side to null (unless already changed)
             if ($hijo->getPadre() === $this) {
                 $hijo->setPadre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Material>
+     */
+    public function getMateriales(): Collection
+    {
+        return $this->materiales;
+    }
+
+    public function addMateriale(Material $materiale): self
+    {
+        if (!$this->materiales->contains($materiale)) {
+            $this->materiales[] = $materiale;
+            $materiale->setLocalizacion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMateriale(Material $materiale): self
+    {
+        if ($this->materiales->removeElement($materiale)) {
+            // set the owning side to null (unless already changed)
+            if ($materiale->getLocalizacion() === $this) {
+                $materiale->setLocalizacion(null);
             }
         }
 

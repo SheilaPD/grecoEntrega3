@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PersonaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Persona
      * @ORM\Column(type="boolean")
      */
     private $gestorPrestamos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Material::class, mappedBy="persona")
+     */
+    private $materiales;
+
+    public function __construct()
+    {
+        $this->materiales = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,36 @@ class Persona
     public function setGestorPrestamos(bool $gestorPrestamos): self
     {
         $this->gestorPrestamos = $gestorPrestamos;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Material>
+     */
+    public function getMateriales(): Collection
+    {
+        return $this->materiales;
+    }
+
+    public function addMateriale(Material $materiale): self
+    {
+        if (!$this->materiales->contains($materiale)) {
+            $this->materiales[] = $materiale;
+            $materiale->setPersona($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMateriale(Material $materiale): self
+    {
+        if ($this->materiales->removeElement($materiale)) {
+            // set the owning side to null (unless already changed)
+            if ($materiale->getPersona() === $this) {
+                $materiale->setPersona(null);
+            }
+        }
 
         return $this;
     }
