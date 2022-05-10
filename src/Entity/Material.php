@@ -85,9 +85,15 @@ class Material
      */
     private $hijos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Historial::class, mappedBy="material")
+     */
+    private $historico;
+
     public function __construct()
     {
         $this->hijos = new ArrayCollection();
+        $this->historico = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -263,6 +269,36 @@ class Material
             // set the owning side to null (unless already changed)
             if ($hijo->getPadre() === $this) {
                 $hijo->setPadre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Historial>
+     */
+    public function getHistorico(): Collection
+    {
+        return $this->historico;
+    }
+
+    public function addHistorico(Historial $historico): self
+    {
+        if (!$this->historico->contains($historico)) {
+            $this->historico[] = $historico;
+            $historico->setMaterial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistorico(Historial $historico): self
+    {
+        if ($this->historico->removeElement($historico)) {
+            // set the owning side to null (unless already changed)
+            if ($historico->getMaterial() === $this) {
+                $historico->setMaterial(null);
             }
         }
 
