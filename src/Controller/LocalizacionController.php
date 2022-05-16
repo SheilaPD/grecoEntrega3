@@ -20,4 +20,16 @@ class LocalizacionController extends AbstractController
             'localizaciones' => $localizaciones
         ]);
     }
+
+    /**
+     * @Route("/localizacion/listarHijas/{id}", name="listar_locHijas")
+     */
+    public function locHijas(LocalizacionRepository $localizacionRepository, int $id): Response
+    {
+        $localizaciones = $localizacionRepository->findHijas($id);
+
+        return $this->render('localizaciones/listarHijas.html.twig', [
+            'localizaciones' => $localizaciones
+        ]);
+    }
 }
