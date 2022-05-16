@@ -27,6 +27,16 @@ class LocalizacionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findNoPadre()
+    {
+        return $this
+            ->createQueryBuilder('l')
+            ->orderBy('l.nombre', 'ASC')
+            ->where('l.padre = null')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Localizacion::class);
