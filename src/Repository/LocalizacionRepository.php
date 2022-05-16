@@ -32,7 +32,7 @@ class LocalizacionRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('l')
             ->orderBy('l.nombre', 'ASC')
-            ->where('l.padre = null')
+            ->where('l.padre is NULL')
             ->getQuery()
             ->getResult();
     }
