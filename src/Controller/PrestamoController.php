@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\HistorialRepository;
 use App\Repository\MaterialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,18 @@ class PrestamoController extends AbstractController
 
         return $this->render('prestamos/listarMat.html.twig', [
             'materiales' => $materiales
+        ]);
+    }
+
+    /**
+     * @Route("/prestamo/historial/{id}", name="listar_historial")
+     */
+    public function listarHistorial(HistorialRepository $historialRepository, int $id): Response
+    {
+        $prestamos = $historialRepository->findAll();
+
+        return $this->render('prestamos/listarHis.html.twig', [
+            'prestamos' => $prestamos
         ]);
     }
 }
