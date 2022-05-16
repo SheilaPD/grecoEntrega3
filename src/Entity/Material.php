@@ -90,6 +90,11 @@ class Material
      */
     private $historico;
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     public function __construct()
     {
         $this->hijos = new ArrayCollection();
