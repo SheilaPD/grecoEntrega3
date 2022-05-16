@@ -10,9 +10,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class PrestamoController extends AbstractController
 {
     /**
-     * @Route("/material/listar/{id}", name="listar_mat")
+     * @Route("/prestamo", name="seleccionar_pres")
      */
-    public function matListar(MaterialRepository $materialRepository): Response
+    public function selPres(): Response
+    {
+        return $this->render('prestamos/prestamos.html.twig');
+    }
+
+    /**
+     * @Route("/prestamo/listar", name="listar_pres")
+     */
+    public function presListar(MaterialRepository $materialRepository): Response
     {
         $materiales = $materialRepository->findNoDisp();
 
