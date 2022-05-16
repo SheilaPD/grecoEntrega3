@@ -28,4 +28,16 @@ class PrestamoController extends AbstractController
             'materiales' => $materiales
         ]);
     }
+
+    /**
+     * @Route("/prestamo/materiales", name="listar_presMateriales")
+     */
+    public function presMateriales(MaterialRepository $materialRepository): Response
+    {
+        $materiales = $materialRepository->findAll();
+
+        return $this->render('prestamos/listarMat.html.twig', [
+            'materiales' => $materiales
+        ]);
+    }
 }
