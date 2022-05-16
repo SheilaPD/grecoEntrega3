@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <table style="border: 0.1em solid black;">
+        <tr>
+            <td style="border: 0.1em solid black;">Material</td>
+            <td style="border: 0.1em solid black;">Prestado a</td>
+            <td style="border: 0.1em solid black;">Prestado por</td>
+            <td style="border: 0.1em solid black;">Devuelto por</td>
+            <td style="border: 0.1em solid black;">Fecha del préstamo</td>
+            <td style="border: 0.1em solid black;">Fecha de la devolución</td>
+            <td style="border: 0.1em solid black;">Notas</td>
+        </tr>
+        {% for mat in materiales %}
+            <tr>
+                <td style="border: 0.1em solid black;">{{ mat.material }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.prestadoA }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.prestadoPor }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.devueltoPor }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.fechaHoraPrestamo | date("d/m/Y") }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.fechaHoraDevolucion | date("d/m/Y") }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.notas }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('listar_presMateriales') }}">Volver</a>
+{% endblock %}
+
