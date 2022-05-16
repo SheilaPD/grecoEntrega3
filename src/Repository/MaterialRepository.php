@@ -18,6 +18,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MaterialRepository extends ServiceEntityRepository
 {
+    public function findLoc(int $id)
+    {
+        return $this
+            ->createQueryBuilder('m')
+            ->where('m.localizacion = :id')
+            ->setParameter('id', $id)
+            ->orderBy('m.nombre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Material::class);
