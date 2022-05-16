@@ -12,7 +12,7 @@
                 <td style="border: 0.1em solid black;">{{ loc.codigo }}</td>
                 <td style="border: 0.1em solid black;">{{ loc.nombre }}</td>
                 <td style="border: 0.1em solid black;">{{ loc.descripcion }}</td>
-                <td style="border: 0.1em solid black;"><a href="{{ path(''), {'id': loc.id}) }}">Ver materiales</a></td>
+                <td style="border: 0.1em solid black;"><a href="{{ path('listar_mat', {'id': loc.id}) }}">Ver materiales</a></td>
             </tr>
         {% endfor %}
     </table>
