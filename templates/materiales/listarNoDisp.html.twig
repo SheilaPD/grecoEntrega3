@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <table style="border: 0.1em solid black;">
+        <tr>
+            <td style="border: 0.1em solid black;">Nombre</td>
+            <td style="border: 0.1em solid black;">Descripción</td>
+            <td style="border: 0.1em solid black;">Disponible</td>
+            <td style="border: 0.1em solid black;">Fecha de alta</td>
+            <td style="border: 0.1em solid black;">Fecha de baja</td>
+            <td style="border: 0.1em solid black;">Fecha del último préstamo</td>
+            <td style="border: 0.1em solid black;">Localización</td>
+            <td style="border: 0.1em solid black;">Responsable</td>
+            <td style="border: 0.1em solid black;">Persona que lo ha prestado</td>
+        </tr>
+        {% for mat in materiales %}
+            <tr>
+                <td style="border: 0.1em solid black;">{{ mat.nombre }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.descripcion }}</td>
+                <td style="border: 0.1em solid black;">{% if mat.disponible %}Sí{% else %}No{% endif %}</td>
+                <td style="border: 0.1em solid black;">{{ mat.fechaAlta | date("d/m/Y") }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.fechaBaja | date("d/m/Y") }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.fechaHoraUltimoPrestamo | date("d/m/Y") }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.localizacion }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.responsable }}</td>
+                <td style="border: 0.1em solid black;">{{ mat.prestadoPor }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('listar_loc') }}">Volver</a>
+{% endblock %}
+
