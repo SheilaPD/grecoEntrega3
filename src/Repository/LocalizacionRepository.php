@@ -37,6 +37,17 @@ class LocalizacionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findHijas($id)
+    {
+        return $this
+            ->createQueryBuilder('l')
+            ->where('l.padre = :id')
+            ->setParameter('id', $id)
+            ->orderBy('l.nombre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Localizacion::class);
