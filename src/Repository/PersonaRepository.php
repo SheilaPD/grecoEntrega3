@@ -18,6 +18,16 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PersonaRepository extends ServiceEntityRepository
 {
+    public function findPer()
+    {
+        return $this
+            ->createQueryBuilder('p')
+            ->orderBy('p.apellidos', 'ASC')
+            ->orderBy('p.nombre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Persona::class);
