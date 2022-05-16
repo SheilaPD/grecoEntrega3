@@ -54,6 +54,11 @@ class Persona
      */
     private $materiales;
 
+    public function __toString()
+    {
+        return $this->getNombre() . ' ' . $this->getApellidos();
+    }
+
     public function __construct()
     {
         $this->materiales = new ArrayCollection();
