@@ -49,6 +49,11 @@ class Localizacion
      */
     private $materiales;
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     public function __construct()
     {
         $this->hijos = new ArrayCollection();
