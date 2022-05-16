@@ -29,6 +29,16 @@ class MaterialRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findNoDisp()
+    {
+        return $this
+            ->createQueryBuilder('m')
+            ->where('m.disponible = false')
+            ->orderBy('m.fechaHoraUltimoPrestamo', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Material::class);
