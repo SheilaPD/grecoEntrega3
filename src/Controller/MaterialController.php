@@ -12,7 +12,7 @@ class MaterialController extends AbstractController
     /**
      * @Route("/material/listar/{id}", name="listar_mat")
      */
-    public function productoListar(MaterialRepository $materialRepository, int $id): Response
+    public function matListar(MaterialRepository $materialRepository, int $id): Response
     {
         $materiales = $materialRepository->findLoc($id);
 

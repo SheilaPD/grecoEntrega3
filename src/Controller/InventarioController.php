@@ -12,7 +12,7 @@ class InventarioController extends AbstractController
     /**
      * @Route("/inventario/listar", name="listar_loc")
      */
-    public function productoListar(LocalizacionRepository $localizacionRepository): Response
+    public function locListar(LocalizacionRepository $localizacionRepository): Response
     {
         $localizaciones = $localizacionRepository->findOrd();
 
