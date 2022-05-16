@@ -1,18 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav>
         <h1>GRECO</h1>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        {% set route_name = app.request.get('_route') %}
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="{{ path('listar_loc') }}" class="nav-link">Inventario</a></li>
-                <li class="nav-item"><a href="{{ path('') }}" class="nav-link">Préstamos</a></li>
-                <li class="nav-item"><a href="{{ path('') }}" class="nav-link">Localizaciones</a></li>
-                <li class="nav-item"><a href="{{ path('') }}" class="nav-link">Personas</a></li>
+        <div>
+            <ul>
+                <li style="display: inline;"><a href="{{ path('listar_loc') }}">Inventario</a></li>
+                <li style="display: inline;"><a href="">Préstamos</a></li>
+                <li style="display: inline;"><a href="">Localizaciones</a></li>
+                <li style="display: inline;"><a href="">Personas</a></li>
             </ul>
         </div>
     </nav>
