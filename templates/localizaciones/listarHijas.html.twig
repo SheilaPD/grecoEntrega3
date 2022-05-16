@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <table style="border: 0.1em solid black;">
+        <tr>
+            <td style="border: 0.1em solid black;">Lugar</td>
+            <td style="border: 0.1em solid black;">Codigo</td>
+            <td style="border: 0.1em solid black;">Nombre</td>
+            <td style="border: 0.1em solid black;">Descripción</td>
+        </tr>
+        {% for loc in localizaciones %}
+            <tr>
+                <td style="border: 0.1em solid black;">{{ loc.padre }}</td>
+                <td style="border: 0.1em solid black;">{{ loc.codigo }}</td>
+                <td style="border: 0.1em solid black;">{{ loc.nombre }}</td>
+                <td style="border: 0.1em solid black;">{{ loc.descripcion }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('listar_locNoPadre') }}">Volver</a>
+{% endblock %}
+
