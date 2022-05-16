@@ -18,6 +18,15 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LocalizacionRepository extends ServiceEntityRepository
 {
+    public function findOrd()
+    {
+        return $this
+            ->createQueryBuilder('l')
+            ->orderBy('l.nombre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Localizacion::class);
