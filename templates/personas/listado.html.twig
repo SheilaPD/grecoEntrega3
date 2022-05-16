@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <table style="border: 0.1em solid black;">
+        <tr>
+            <td style="border: 0.1em solid black;">Nombre de usuario</td>
+            <td style="border: 0.1em solid black;">Nombre completo</td>
+            <td style="border: 0.1em solid black;">Administrador</td>
+            <td style="border: 0.1em solid black;">Gestor de préstamos</td>
+            <td style="border: 0.1em solid black;">Material/es del que es responsable</td>
+        </tr>
+        {% for per in personas %}
+            <tr>
+                <td style="border: 0.1em solid black;">{{ per.nombreUsuario }}</td>
+                <td style="border: 0.1em solid black;">{{ per.nombre }} {{ per.apellidos }}</td>
+                <td style="border: 0.1em solid black;">{% if per.administrador %}Sí{% else %}No{% endif %}</td>
+                <td style="border: 0.1em solid black;">{% if per.gestorPrestamos %}Sí{% else %}No{% endif %}</td>
+                <td style="border: 0.1em solid black;">{{ per.materiales }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('seleccionar_pres') }}">Volver</a>
+{% endblock %}
